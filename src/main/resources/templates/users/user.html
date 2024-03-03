@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+<div th:insert="~{fragment :: header}"></div>
+
+<!-- Display section for username, password, and role -->
+<div th:if="${user != null}">
+    <h3>User Details</h3>
+    <p><strong>Username:</strong> <span th:text="${user.username}">Username</span></p>
+    <p><strong>Password:</strong> <span th:text="${user.password}">Password</span></p>
+    <p><strong>Role:</strong> <span th:text="${user.role}">Role</span></p>
+</div>
+
+
+<form th:action="@{/users/{id}/update(id=${user.id})}" th:object="${user}" method="post">
+
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" th:value="*{username}" required/>
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" th:value="*{password}" required/>
+    </div>
+    <div>
+        <label for="role">Role:</label>
+        <select id="role" name="role" th:value="*{role}" required>
+            <option value="USER">User</option>
+            <option value="ADMIN">Admin</option>
+            <option value="OPERATOR">Operator</option>
+        </select>
+    </div>
+    <div>
+        <button type="submit">Update</button>
+    </div>
+</form>
+
+<!-- Delete -->
+<div th:if="${user != null}">
+    <form th:action="@{/users/{id}/delete(id=${user.id})}" method="post">
+        <button type="submit">Delete</button>
+    </form>
+
+
+</div>
+
+<a href="/users">List of users</a>
+
+</body>
+</html>

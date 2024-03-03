@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body>
+
+<h2>User registration</h2>
+
+<form th:action="@{/users}" method="post">
+  <div>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required />
+  </div>
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required />
+  </div>
+  <div>
+    <label for="role">Role:</label>
+    <select id="role" name="role" required>
+      <option value="USER">User</option>
+      <option value="ADMIN">Admin</option>
+      <option value="OPERATOR">Operator</option>
+    </select>
+  </div>
+  <div>
+    <button type="submit">Create</button>
+  </div>
+</form>
+
+</body>
+</html>
